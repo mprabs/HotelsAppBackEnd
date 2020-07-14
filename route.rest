@@ -1,0 +1,28 @@
+POST http://localhost:8080/hotels
+Content-Type: application/json
+
+{
+    "name" : "Hayat",
+    "address" : "Kathmandy",
+    "number" : "2313123"
+}
+
+###
+GET  http://localhost:8080/hotels/
+
+###
+GET  http://localhost:8080/hotels/5f0d75c3e66d862748415de1
+
+###
+
+DELETE  http://localhost:8080/hotels/5f0d75c3e66d862748415de1
+
+###
+
+
+PATCH  http://localhost:8080/hotels/5f0d75c3e66d862748415de1
+Content-Type: application/json
+
+{
+    "name" : "Everest"
+}

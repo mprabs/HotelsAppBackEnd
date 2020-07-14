@@ -1,0 +1,7 @@
+
+// mongodb setup
+npm i express mongoose
+npm i --save-dev dotenv nodemon
+
+// task kill
+taskkill /F /IM node.exe
