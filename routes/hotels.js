@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-
+const authentication = require('../helpers/authentication')
 const Hotel = require('../models/hotel')
 
 module.exports = router
 
-router.get('/', async (req, res) => {
+router.get('/', authentication, async (req, res) => {
     try{
         const hotels = await Hotel.find()
         res.send(hotels)
@@ -17,21 +17,23 @@ router.get('/', async (req, res) => {
 })
 
 
-router.get('/:id',getHotel, (req, res) => {
+router.get('/:id',authentication, getHotel, (req, res) => {
     res.json(res.hotel)
 })
 
 
-router.post('/', async(req, res) => {
+router.post('/', authentication, async(req, res) => {
     var hotel = new Hotel({
         name: req.body.name,
         address: req.body.address,
-        number: req.body.number
+        number: req.body.number,
+        image: req.body.image
     });
 
     try {
         const newhotel = await hotel.save()
         res.status(201).json(newhotel) // 201: successful
+        next();
     }
     catch (err) {
         res.status(400).json(hotel)
@@ -39,7 +41,7 @@ router.post('/', async(req, res) => {
 })
 
 
-router.patch('/:id',getHotel, async (req, res) => {
+router.patch('/:id',authentication, getHotel, async (req, res) => {
     if(req.body.name != null) {
         res.hotel.name = req.body.name
     }
@@ -52,17 +54,19 @@ router.patch('/:id',getHotel, async (req, res) => {
         res.hotel.number = req.body.number
     }
 
+    if(req.body.image != null) {
+        res.hotel.image = req.body.image
+    }
     try {
         const updatedHotel = await res.hotel.save()
         res.status(200).json(updatedHotel)
     } catch (error) {
         res.status(400).json({message: error.message})
     }
-
 })
 
 
-router.delete('/:id', getHotel, async (req, res) => {
+router.delete('/:id', authentication, getHotel, async (req, res) => {
     try {
         await res.hotel.remove()
         res.json({message: 'Successfully deleted'})

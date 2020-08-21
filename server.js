@@ -14,8 +14,10 @@ db.once('open',(error) => console.log('Connected to database !'))
 
 app.use(express.json())
 
-const hotelsRouter = require('./routes/hotels')
+app.listen(8081, () => console.log('Server started!'));
 
+const hotelsRouter = require('./routes/hotels')
 app.use('/hotels', hotelsRouter)
 
-app.listen(8080, () => console.log('Server started!'));
+const loginRouter = require('./routes/users')
+app.use('/users', loginRouter)

@@ -14,9 +14,11 @@ const hotelSchema = new mongoose.Schema({
         required: false
     },
     image: {
-        type: Buffer,
+        type: String,
         required: false
     }
+}, {
+    timestamps: true
 })
 
 module.exports = mongoose.model('Hotel', hotelSchema)

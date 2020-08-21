@@ -1,4 +1,4 @@
-POST http://localhost:8080/hotels
+POST http://localhost:8081/hotels
 Content-Type: application/json
 
 {
@@ -8,21 +8,40 @@ Content-Type: application/json
 }
 
 ###
-GET  http://localhost:8080/hotels/
+GET  http://localhost:8081/hotels/
 
 ###
-GET  http://localhost:8080/hotels/5f0d75c3e66d862748415de1
-
-###
-
-DELETE  http://localhost:8080/hotels/5f0d75c3e66d862748415de1
+GET  http://localhost:8081/hotels/5f0d75c3e66d862748415de1
 
 ###
 
+DELETE  http://localhost:8081/hotels/5f0d75c3e66d862748415de1
 
-PATCH  http://localhost:8080/hotels/5f0d75c3e66d862748415de1
+###
+
+
+PATCH  http://localhost:8081/hotels/5f0d75c3e66d862748415de1
 Content-Type: application/json
 
 {
     "name" : "Everest"
 }
+
+
+###
+
+GET http://localhost:8081/users/5f3f72679f2e8b757c509e6b
+
+###
+
+POST http://localhost:8081/users/login
+Content-Type: application/json
+
+{
+    "email" : "newEMmail@gmail.com",
+    "password" : "passsww"
+}
+
+
+###
+GET http://localhost:8081/users
