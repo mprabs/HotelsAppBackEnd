@@ -21,3 +21,6 @@ app.use('/hotels', hotelsRouter)
 
 const loginRouter = require('./routes/users')
 app.use('/users', loginRouter)
+
+const BookingRouter = require('./routes/bookings')
+app.use('/bookings', BookingRouter);

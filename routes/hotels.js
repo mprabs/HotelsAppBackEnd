@@ -5,7 +5,7 @@ const Hotel = require('../models/hotel')
 
 module.exports = router
 
-router.get('/', authentication, async (req, res) => {
+router.get('/', async (req, res) => {
     try{
         const hotels = await Hotel.find()
         res.send(hotels)
@@ -17,12 +17,12 @@ router.get('/', authentication, async (req, res) => {
 })
 
 
-router.get('/:id',authentication, getHotel, (req, res) => {
+router.get('/:id', getHotel, (req, res) => {
     res.json(res.hotel)
 })
 
 
-router.post('/', authentication, async(req, res) => {
+router.post('/', async(req, res) => {
     var hotel = new Hotel({
         name: req.body.name,
         address: req.body.address,
@@ -41,7 +41,7 @@ router.post('/', authentication, async(req, res) => {
 })
 
 
-router.patch('/:id',authentication, getHotel, async (req, res) => {
+router.patch('/:id', getHotel, async (req, res) => {
     if(req.body.name != null) {
         res.hotel.name = req.body.name
     }
@@ -66,7 +66,7 @@ router.patch('/:id',authentication, getHotel, async (req, res) => {
 })
 
 
-router.delete('/:id', authentication, getHotel, async (req, res) => {
+router.delete('/:id', getHotel, async (req, res) => {
     try {
         await res.hotel.remove()
         res.json({message: 'Successfully deleted'})

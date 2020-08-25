@@ -42,6 +42,9 @@ router.post('/register', async(req, res) => {
 
 // USER LOGIN
 router.post('/login', async(req,res) => {
+    if(!req.body)
+        return res.status(400).json({ message: "Details can't be empty" })
+
     // VALIDATION
     const { error } = loginValidation(req.body);
     if(error)
@@ -57,7 +60,7 @@ router.post('/login', async(req,res) => {
 
     // CREATE AND ASSIGN TOKEN
     const TOKEN = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN)
-    res.header('auth-token', TOKEN).send({ token: TOKEN });
+    res.header('auth_token', TOKEN).send({ token: TOKEN, name: user.name, id: user._id });
 
     // try {
         
@@ -65,8 +68,6 @@ router.post('/login', async(req,res) => {
     //     res.status(400).send({ message: error.message});
     // }
 })
-
-
 
 // GET LIST OF USERS
 router.get('/', async(req,res) => {
@@ -101,7 +102,7 @@ router.delete('/:id', getUser, async(req, res) => {
 async function getUser (req, res, next) {
     let user
     try {
-        user = await User.findById(req.params.id)
+        user = (await User.findById(req.params.id))
         if(user == null) {
             return res.status(404).json({message: 'Cannot find the user'})
         }
