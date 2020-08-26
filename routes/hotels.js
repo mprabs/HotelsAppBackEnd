@@ -5,14 +5,11 @@ const Hotel = require('../models/hotel')
 
 module.exports = router
 
-router.get('/', async (req, res) => {
-    try{
-        const hotels = await Hotel.find()
-        res.send(hotels)
-    }
-
-    catch (err) {
-        res.status(500).json({ message: err.message }) //500 : error on server
+router.get('/', paginatedResults(Hotel), async (req, res) => {
+    try {
+        res.json(res.paginatedResults)
+    } catch (e) {
+        res.status(500).json({ message: e.message })
     }
 })
 
@@ -89,4 +86,41 @@ async function getHotel (req, res, next) {
     }
     res.hotel = hotel;
     next();
+}
+
+
+function paginatedResults(model) {
+    return async(req, res, next) => {
+        const page = parseInt(req.query.page);
+        const limit = parseInt(req.query.limit);
+        
+        console.log(page, limit)
+        const startIndex = (page - 1) * limit;
+        const endIndex = page * limit;
+        console.log(startIndex, endIndex)
+        const results = {}
+        console.log(await model.countDocuments().exec())
+    
+        if(endIndex < await model.countDocuments().exec()) {
+            results.next = {
+                page: page + 1,
+                limit: limit
+            }
+        }
+    
+        if(startIndex > 0) {
+            results.prev = {
+                page: page - 1,
+                limit: limit
+            }
+        }
+
+        try {
+            results.results = await model.find().limit(limit).skip(startIndex).exec()
+        } catch (e){
+            res.status(500).json({ message: e.message })
+        }
+        res.paginatedResults = results
+        next()
+    }
 }

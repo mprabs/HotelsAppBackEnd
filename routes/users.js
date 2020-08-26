@@ -62,11 +62,6 @@ router.post('/login', async(req,res) => {
     const TOKEN = jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN)
     res.header('auth_token', TOKEN).send({ token: TOKEN, name: user.name, id: user._id });
 
-    // try {
-        
-    // } catch (error) {
-    //     res.status(400).send({ message: error.message});
-    // }
 })
 
 // GET LIST OF USERS
