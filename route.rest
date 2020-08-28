@@ -8,7 +8,7 @@ Content-Type: application/json
 }
 
 ###
-GET  http://localhost:8081/hotels?page=1&limit=10
+GET  http://localhost:8081/hotels?page=2&limit=10
 
 ###
 GET  http://localhost:8081/hotels/5f0d75c3e66d862748415de1
@@ -30,7 +30,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8081/users/5f3f72679f2e8b757c509e6b
+GET http://localhost:8081/users/5f3f8194094775c700c50d36
 
 ###
 

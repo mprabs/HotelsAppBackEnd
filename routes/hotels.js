@@ -24,7 +24,8 @@ router.post('/', async(req, res) => {
         name: req.body.name,
         address: req.body.address,
         number: req.body.number,
-        image: req.body.image
+        image: req.body.image,
+        description: req.body.description
     });
 
     try {
@@ -53,6 +54,10 @@ router.patch('/:id', getHotel, async (req, res) => {
 
     if(req.body.image != null) {
         res.hotel.image = req.body.image
+    }
+
+    if(req.body.description != null) {
+        res.hotel.description = req.body.description
     }
     try {
         const updatedHotel = await res.hotel.save()
