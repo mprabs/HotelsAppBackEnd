@@ -99,12 +99,9 @@ function paginatedResults(model) {
         const page = parseInt(req.query.page);
         const limit = parseInt(req.query.limit);
         
-        console.log(page, limit)
         const startIndex = (page - 1) * limit;
         const endIndex = page * limit;
-        console.log(startIndex, endIndex)
         const results = {}
-        console.log(await model.countDocuments().exec())
     
         if(endIndex < await model.countDocuments().exec()) {
             results.next = {

@@ -5,8 +5,7 @@ const app = express()
 const mongoose = require('mongoose')
 var cors = require('cors');
 app.use(cors());
-const DATABASE_URL="mongodb+srv://dbUser:h8haBjtD56HpaNP@cluster0.vmnbl.mongodb.net/HotelsApp?retryWrites=true&w=majority"
-mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection
 db.on('error',(error) => console.error(error))
