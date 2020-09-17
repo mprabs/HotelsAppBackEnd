@@ -1,4 +1,6 @@
-require('dotenv').config()
+if (process.env.NODE_ENV !== 'production') { 
+    require('dotenv').config()
+}
 
 const express = require('express');
 const app = express()
@@ -14,11 +16,12 @@ db.once('open',() => console.log('Connected to database !'))
 app.use(express.json())
 
 const host = process.env.PORT ? '0.0.0.0' : 'localhost'
+const PORT = process.env.PORT || 8081
 
-app.listen(process.env.PORT || 8081, host, () => console.log('Server started!', process.env.PORT ? 'Port' : 'Local'));
+app.listen(PORT, host, () => console.log(process.env.PORT ? 'Server Port' : 'Local port'));
 
 app.get('/', (req, res) => {
-    res.send('Try /hotels');
+    res.send('Hotels API...');
 })
 
 const hotelsRouter = require('./routes/hotels')
