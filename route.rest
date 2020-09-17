@@ -44,14 +44,14 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:8081/users
+GET http://localhost:8081/users/5f536039377e2514f22fd13e
 
 ###
 POST http://localhost:8081/bookings
 Content-Type: application/json
 
 {
-    "user" : "5f3f94e024815dddbc691ce2",
+    "user" : "5f48c7b47c37676d24989fb7",
     "hotel": "5f16e80eb047fec248dee714",
     "bookFrom" : "December",
     "bookTo": "adsfadfa",
@@ -69,3 +69,7 @@ DELETE http://localhost:8081/bookings/5f3fce657d6db7e4d09582bc
 
 ###
 DELETE http://localhost:8081/users/5f3e0825e397c9e94bd32698
+
+
+###
+DELETE  http://localhost:8081/bookings/5f53626dbf2fa579558175f3
