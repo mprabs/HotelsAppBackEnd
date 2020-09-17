@@ -13,7 +13,9 @@ db.once('open',() => console.log('Connected to database !'))
 
 app.use(express.json())
 
-app.listen(process.env.PORT || 8081, () => console.log('Server started!'));
+const host = process.env.PORT ? '0.0.0.0' : 'localhost'
+
+app.listen(process.env.PORT || 8081, host, () => console.log('Server started!', process.env.PORT ? 'Port' : 'Local'));
 
 app.get('/', () => {
     res.send('Try /hotels');
