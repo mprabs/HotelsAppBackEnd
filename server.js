@@ -13,7 +13,7 @@ db.once('open',() => console.log('Connected to database !'))
 
 app.use(express.json())
 
-app.listen(8081, () => console.log('Server started!'));
+app.listen(process.env.PORT || 8081, () => console.log('Server started!'));
 
 app.get('/', () => {
     res.send('Try /hotels');
