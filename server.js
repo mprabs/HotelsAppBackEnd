@@ -17,7 +17,7 @@ const host = process.env.PORT ? '0.0.0.0' : 'localhost'
 
 app.listen(process.env.PORT || 8081, host, () => console.log('Server started!', process.env.PORT ? 'Port' : 'Local'));
 
-app.get('/', () => {
+app.get('/', (req, res) => {
     res.send('Try /hotels');
 })
 
