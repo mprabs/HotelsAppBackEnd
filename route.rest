@@ -8,7 +8,7 @@ Content-Type: application/json
 }
 
 ###
-GET  http://localhost:8081/hotels?page=2&limit=10
+GET  http://localhost:8081/hotels?page=1&limit=10
 
 ###
 GET  http://localhost:8081/hotels/5f0d75c3e66d862748415de1
@@ -38,8 +38,8 @@ POST http://localhost:8081/users/login
 Content-Type: application/json
 
 {
-    "email" : "newEMmail@gmail.com",
-    "password" : "passsww"
+    "email" : "raheem@gmail.com",
+    "password" : "raheem"
 }
 
 
@@ -52,7 +52,7 @@ Content-Type: application/json
 
 {
     "user" : "5f48c7b47c37676d24989fb7",
-    "hotel": "5f16e80eb047fec248dee714",
+    "hotel": "5f48c8087c37676d24989fb8",
     "bookFrom" : "December",
     "bookTo": "adsfadfa",
     "contact": "23423424",
@@ -64,7 +64,7 @@ GET http://localhost:8081/bookings
 
 
 ###
-DELETE http://localhost:8081/bookings/5f3fce657d6db7e4d09582bc
+DELETE http://localhost:8081/bookings/5f659fc426bcdb0004b73b1c
 
 
 ###
