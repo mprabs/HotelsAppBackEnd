@@ -40,7 +40,7 @@ app.use(express.json());
 // const host = process.env.PORT ? '0.0.0.0' : 'localhost'
 const PORT = process.env.PORT || 8081;
 
-app.listen(PORT, () =>
+app.listen(PORT, "0.0.0.0", () =>
   console.log(process.env.PORT ? "Server Port" : "Local port")
 );
 
